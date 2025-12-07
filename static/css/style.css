@@ -1,0 +1,39 @@
+/* Custom site styles */
+:root{
+    --accent: #3498db;
+    --accent-2: #2ecc71;
+    --bg-1: #f3f7fb;
+}
+html,body{
+    height:100%;
+}
+body{
+    background: linear-gradient(180deg, #eef6fb 0%, #ffffff 60%);
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    color: #333;
+}
+.main-container{
+    max-width: 980px;
+    margin: 40px auto;
+}
+.site-card{
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(20,40,80,0.08);
+    padding: 28px;
+}
+.hero-title{font-size:1.9rem; font-weight:600; margin-bottom:8px}
+.hero-sub{color:#666;margin-bottom:18px}
+.btn-accent{background:var(--accent); color:#fff; border:none}
+.btn-accent:hover{background:#2b89c9}
+.btn-green{background:var(--accent-2); color:#fff; border:none}
+.form-control{border-radius:8px}
+.table thead th{background:var(--accent); color:#fff}
+.table tbody tr:hover{background:#f6fbff}
+.nav-welcome{color:#fff; margin-right:12px}
+.footer{margin:40px 0 20px; text-align:center; color:#777}
+
+@media (max-width:576px){
+    .main-container{margin:16px}
+    .hero-title{font-size:1.4rem}
+}

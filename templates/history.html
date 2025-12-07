@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2 class="mb-3 text-center">Your Simulation History</h2>
+    <div class="table-responsive">
+        <table class="table align-middle">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Asset Price (S₀)</th>
+                    <th>Volatility (σ)</th>
+                    <th>Average Price</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for sim in simulations %}
+                <tr>
+                    <td>{{ sim.id }}</td>
+                    <td>{{ sim.s0 }}</td>
+                    <td>{{ sim.sigma }}</td>
+                    <td>{{ sim.average_price | round(2) }}</td>
+                    <td>{{ sim.timestamp.strftime("%Y-%m-%d %H:%M:%S") }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center mt-3">
+        <a class="btn btn-outline-secondary" href="{{ url_for('home') }}">Back to Home</a>
+    </div>
+{% endblock %}

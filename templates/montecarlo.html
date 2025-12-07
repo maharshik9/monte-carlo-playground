@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h2 class="mb-3">Monte Carlo Simulation</h2>
+        <form action="/simulate" method="POST">
+            <div class="mb-3">
+                <label class="form-label">Initial Price (S₀)</label>
+                <input class="form-control" type="number" step="0.01" name="s0" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Volatility (σ)</label>
+                <input class="form-control" type="number" step="0.01" name="sigma" required>
+            </div>
+
+            <div class="d-flex gap-2">
+                <button class="btn btn-accent" type="submit">Run Simulation</button>
+                <a class="btn btn-outline-secondary" href="{{ url_for('home') }}">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

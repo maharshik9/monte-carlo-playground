@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+        <h3 class="mb-0">Dashboard</h3>
+        <div class="text-muted">Overview of your recent simulations</div>
+    </div>
+    <div>
+        <a class="btn btn-accent" href="{{ url_for('montecarlo') }}">New Simulation</a>
+        <a class="btn btn-outline-secondary ms-2" href="{{ url_for('history') }}">Full History</a>
+    </div>
+</div>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-4">
+        <div class="site-card text-center">
+            <div class="h5">Total Runs</div>
+            <div class="display-6">{{ total }}</div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="site-card text-center">
+            <div class="h5">Last Average Price</div>
+            <div class="display-6">{% if last_sim %}{{ last_sim.average_price | round(2) }}{% else %}—{% endif %}</div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="site-card text-center">
+            <div class="h5">Last Run</div>
+            <div class="text-muted">{% if last_sim %}{{ last_sim.timestamp.strftime('%Y-%m-%d %H:%M') }}{% else %}—{% endif %}</div>
+        </div>
+    </div>
+</div>
+
+<h5 class="mb-3">Recent Simulations</h5>
+{% if recent %}
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>S₀</th>
+                    <th>σ</th>
+                    <th>Average</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for sim in recent %}
+                <tr>
+                    <td>{{ sim.id }}</td>
+                    <td>{{ sim.s0 }}</td>
+                    <td>{{ sim.sigma }}</td>
+                    <td>{{ sim.average_price | round(2) }}</td>
+                    <td>{{ sim.timestamp.strftime('%Y-%m-%d %H:%M') }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% else %}
+    <p class="text-muted">No simulations yet. Run your first simulation to see results here.</p>
+{% endif %}
+
+{% endblock %}
